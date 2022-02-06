@@ -14,7 +14,6 @@ we knew ~ _Test-Driven-Development for Embedded C by James W. Grenning_
 3. An example of the Test-Driven-Development workflow.
 
 ## My experiences
----
 
 Writing unit-tests first, and the functions after worked magical for me. Some positive experiences I had/have:
 
@@ -22,15 +21,15 @@ Writing unit-tests first, and the functions after worked magical for me. Some po
 2. Because you write the test first, you need to think about the function, it's arguments and return value so that you don't start to code immediately without thinking. This makes my code better and straight to the point.
 3. When you refactor your code or try to add small functionalities, the unit tests immediately show you whether you broke your code by changing things.
 
-## Installing Unity: A unit-test framework for C.
----
+## Installing Unity: A unit-test framework for C
 
 [Unity](https://github.com/ThrowTheSwitch/Unity) is the unit-testing framework we will be using throughout this tutorial but there are a lot of others as well and they all do the same: Improve you code!
 
-First create a directory for the example (later in this tutorial):
+First create a directory for the example we'll cover below:
 
 ```sh
-mkdir unit_tesing_example
+mkdir unit_testing_example
+cd unit_testing_example/
 ```
 
 Then clone Unity through GitHub inside of _unit_testing_example_:
@@ -42,14 +41,15 @@ git clone https://github.com/ThrowTheSwitch/Unity.git unity
 Installing Unity is as simple as that! Now let's go on to an example in which we will be using Unity.
 
 ## An example of the Test-Driven-Development workflow.
----
 
 ![Test Driven Development Workflow](./imgs/red-green-refactor.png)
 [Image source](https://www.geeksforgeeks.org/7-code-refactoring-techniques-in-software-engineering/)
 
+_"Test Driven Development (TDD) is software development approach in which test cases are developed to specify and validate what the code will do. In simple terms, test cases for each functionality are created and tested first and if the test fails then the new code is written in order to pass the test and making code simple and bug-free." ~ Thomas Hamilton's article on [guru99](https://www.guru99.com/test-driven-development.html)._
+
 ### __Project structure__
 
-The project will have the following structure:
+The example-project will have the following structure:
 
 ```
 unit_testing_example/
@@ -69,7 +69,7 @@ unit_testing_example/
 
 ### __Function prototype__
 
-We are going to write a string join function in C. We are first going to write a test, before writing our _string_join_ function itself. So let's thinks about how the function prototype looks like:
+We are going to write a string join function in C. We are first going to write a test, before writing our _string_join_ function itself (TDD). So let's thinks about how the function prototype looks like:
 
 ```C
 char *string_join(char *s1, char *s2);
@@ -309,10 +309,12 @@ char *string_join(char *s1, char *s2);
 
 ### __Compilation__
 
+> You can also check the Makefile in the repo to see how the compilation works. Run `make test` to create the `test_exec` executable. Or run `make test_run` to create and run the tests.
+
 We have all necessary source files and tests, but how to compile?
 
 ```sh
-gcc -Wall -Wextra -Werror -D UNITY_OUTPUT_COLOR -D UNITY_FIXTURE_NO_EXTRAS -I./unity/src -I./unity/extras/fixture/src unity/src/unity.c unity/extras/fixture/src/unity_fixture.c test/main/all_tests.c test/main/all_tests_runner.c test/test_string_join.c src/string_join.c -o test_string_join
+gcc -Wall -Wextra -Werror -D UNITY_OUTPUT_COLOR -D UNITY_FIXTURE_NO_EXTRAS -I./unity/src -I./unity/extras/fixture/src unity/src/unity.c unity/extras/fixture/src/unity_fixture.c test/main/all_tests.c test/main/all_tests_runner.c test/test_string_join.c src/string_join.c -o test_exec
 ```
 
 - `-D UNITY_OUTPUT_COLOR`						: Output red and green colors for fails and successes respectively.
@@ -325,12 +327,12 @@ gcc -Wall -Wextra -Werror -D UNITY_OUTPUT_COLOR -D UNITY_FIXTURE_NO_EXTRAS -I./u
 - `test/main/all_tests_runner.c`				: The group runner for our tester.
 - `test/test_string_join.c`						: The tests for _string_join_.
 - `src/string_join.c`							: The source code of _string_join_.
-- `-o test_string_join`							: Executable name is _test_string_join_.
+- `-o test_exec`								: Executable name is _test_exec_.
 
 __run tester__:
 
 ```sh
-./test_string_join -v
+./test_exec -v
 ```
 
 The `-v` option makes the output more verbose (it shows you what tests you passed, which gives me a good feeling).
