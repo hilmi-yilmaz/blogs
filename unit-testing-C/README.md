@@ -309,7 +309,7 @@ char *string_join(char *s1, char *s2);
 
 ### __Compilation__
 
-> You can also check the Makefile in the repo to see how the compilation works. Run `make test` to create the `test_exec` executable. Or run `make test_run` to create and run the tests.
+> You can also check the [Makefile](https://github.com/hilmi-yilmaz/blogs/blob/main/unit-testing-C/Makefile) in the repo to see how the compilation works. Run `make test` to create the `test_exec` executable. Or run `make test_run` to create and run the tests.
 
 We have all necessary source files and tests, but how to compile?
 
