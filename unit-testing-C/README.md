@@ -69,7 +69,7 @@ unit_testing_example/
 
 ### __Function prototype__
 
-We are going to write a string join function in C. We are first going to write a test, before writing our _string_join_ function itself (TDD). So let's thinks about how the function prototype looks like:
+We are going to write a string join function in C. We are first going to write a test, before writing our _string_join_ function itself (TDD). So let's think about how the function prototype looks like:
 
 ```C
 char *string_join(char *s1, char *s2);
